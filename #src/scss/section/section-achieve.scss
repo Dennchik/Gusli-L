@@ -1,0 +1,456 @@
+@use '../core/all.scss' as *;
+
+.achieve-items {
+	// .achieve-items__body
+	&__body {
+		position: relative;
+		z-index: 9;
+		width: 100%;
+		padding: 8rem 0 10rem;
+	}
+
+	// .achieve-items__title
+	&__title {
+		margin-bottom: 6rem;
+		font: {
+			family: 'AA Neon', Helvetica, sans-serif;
+			size: 5rem;
+			weight: normal;
+		}
+		line-height: 100%;
+		position: relative;
+		z-index: 9;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		white-space: nowrap;
+		letter-spacing: 0;
+		color: $neon-blue;
+		filter: $filter;
+
+		@include minmax-320-1920 {
+			font-size: calc(24px + (60 - 24) * ((100vw - 320px) / (1920 - 320)));
+		}
+
+		@include screen-320 {
+			font-size: 24px;
+		}
+	}
+}
+
+.gallery {
+	// .gallery__items
+	&__items {
+		position: relative;
+		margin: auto;
+		width: 80%;
+		height: 56vh;
+		transform-style: preserve-3d;
+
+		input {
+			visibility: hidden;
+		}
+	}
+
+	// .gallery__content
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		height: 100%;
+		font-family: 'Great Vibes', cursive;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAAEFsT2yAAAACXBIWXMAAAsSAAALEgHS3X78AAAAFElEQVR4nGNhYGBwYIET////ZwAAETIDym2lzEcAAAAASUVORK5CYII=);
+
+		.icon-cycle {
+			padding: 0 1rem;
+			margin: auto -2.3rem;
+			position: absolute;
+			scale: 1;
+			top: 0;
+			bottom: 0;
+			height: 10vh;
+			line-height: 10vh;
+			font-size: 3rem;
+			text-align: right;
+			color: $neon-electric;
+			border-radius: 5px;
+			opacity: 0.5;
+
+			box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5) inset;
+			background: $black-color;
+			cursor: pointer;
+			transition: 0.5s;
+
+			&::before {
+				pointer-events: none;
+			}
+
+			@include min-960 {
+				opacity: 0.2;
+				&:hover {
+					animation: none;
+					opacity: 0.8;
+					scale: 1.2;
+				}
+			}
+		}
+	}
+
+	// .gallery__title
+	&__title {
+		padding: 0.2rem;
+		display: flex;
+		align-items: center;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+		@extend .gradient-spec;
+
+		i {
+			font-size: 32px;
+
+			&::before {
+				color: $electric-lime;
+			}
+
+			@include screen-490 {
+				font-size: 24px;
+			}
+		}
+	}
+
+	// .gallery__tag
+	&__tag {
+		color: $neon-blue-dark;
+		padding-top: 1rem;
+		margin-left: 0.5rem;
+		text-align: left;
+		font-size: 32px;
+		font-weight: 300;
+		line-height: 181.25%; /* 58/32 */
+		text-shadow: -1px -1px 0 #b2d3ff,
+		1px 1px 0 #000;
+
+		@include minmax-320-1920 {
+			font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+		}
+
+		@include screen-320 {
+			font-size: 20px;
+		}
+	}
+
+	// .gallery__card
+	&__card {
+		background-size: 2px 2px,
+		cover;
+		background-position: 0 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+		border-radius: 10px;
+
+		@include min-960 {
+			&:hover {
+				label {
+					animation: pulso 1s infinite alternate;
+				}
+			}
+		}
+	}
+
+	// .gallery__text
+	&__text {
+		pointer-events: none;
+		width: 100%;
+		text-align: right;
+
+		p {
+			display: inline-block;
+			border-radius: 10px;
+			background: rgba(28, 21, 63, 0.226);
+			text-align: right;
+			padding: 2rem 1rem;
+			font-size: 32px;
+			color: $neon-blue-dark;
+			line-height: 1.3;
+			max-width: 540px;
+			text-shadow: -1px -1px 0 #b2d3ff,
+			1px 1px 0 #000;
+
+			@include minmax-320-1920 {
+				font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+			}
+
+			@include screen-320 {
+				font-size: 16px;
+			}
+		}
+	}
+
+	// .gallery__image
+	&__image {
+		z-index: -1;
+		filter: sepia(100%) invert(100%);
+
+		img {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			max-width: none;
+			object-position: center;
+			opacity: 1;
+		}
+	}
+
+	// .gallery__mesh-gradient
+	&__mesh-gradient {
+		z-index: 0 !important;
+		opacity: 0.6;
+		background-size: 100% 100%;
+		object-position: center;
+
+		svg {
+			object-position: center;
+		}
+	}
+
+	// .gallery__footer
+	&__footer {
+		height: 4vh;
+		background: $color;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		[class*='icon-'] {
+			position: relative !important;
+			display: inline-flex;
+			justify-content: center;
+			width: 33.333%;
+			text-align: center;
+			color: $neon-electric;
+			opacity: 0.6;
+
+			&::before {
+				font-size: 3vh;
+				line-height: 145%;
+				pointer-events: none;
+			}
+		}
+
+		.otra {
+			transition: scale 0.4s,
+			color 0.4s ease-in-out;
+			@include min-960 {
+				&:hover {
+					scale: 1.2;
+					color: $neon-blue-dark;
+					animation: none;
+				}
+			}
+		}
+	}
+}
+
+//* ----------------------------------------------------------------------------
+.otra + .otra,
+#in-1:checked ~ .sv-3 .afin,
+#in-2:checked ~ .sv-4 .afin,
+#in-3:checked ~ .sv-5 .afin,
+#in-4:checked ~ .sv-6 .afin,
+#in-5:checked ~ .sv-1 .afin,
+#in-6:checked ~ .sv-2 .afin {
+	right: 0;
+	text-align: left;
+}
+
+#in-1:checked ~ .sv-1 .otra,
+#in-2:checked ~ .sv-2 .otra,
+#in-3:checked ~ .sv-3 .otra,
+#in-4:checked ~ .sv-4 .otra,
+#in-5:checked ~ .sv-5 .otra,
+#in-6:checked ~ .sv-6 .otra {
+	display: flex;
+	opacity: 1;
+	pointer-events: all;
+}
+
+#in-1:checked ~ .sv-1 .afin,
+#in-2:checked ~ .sv-2 .afin,
+#in-3:checked ~ .sv-3 .afin,
+#in-4:checked ~ .sv-4 .afin,
+#in-5:checked ~ .sv-5 .afin,
+#in-6:checked ~ .sv-6 .afin,
+:not(:checked) ~ * .otra {
+	display: none;
+	pointer-events: none;
+}
+
+//* ----------------------------------------------------------------------------
+/* Центральный (задний нижний план) */
+#in-1:checked ~ .sv-6,
+#in-2:checked ~ .sv-1,
+#in-3:checked ~ .sv-2,
+#in-4:checked ~ .sv-3,
+#in-5:checked ~ .sv-4,
+#in-6:checked ~ .sv-5 {
+	animation: 1.5s backBottom;
+	animation-fill-mode: forwards;
+	transform-origin: center bottom;
+	z-index: 1;
+}
+
+/* Центральный (задний верхний план) */
+#in-1:checked ~ .sv-5,
+#in-2:checked ~ .sv-6,
+#in-3:checked ~ .sv-1,
+#in-4:checked ~ .sv-2,
+#in-5:checked ~ .sv-3,
+#in-6:checked ~ .sv-4 {
+	animation: 1.5s backTop;
+	animation-fill-mode: forwards;
+	transform-origin: center top;
+	z-index: 1;
+}
+
+/* Центральный (задний план) */
+#in-1:checked ~ .sv-4,
+#in-2:checked ~ .sv-5,
+#in-3:checked ~ .sv-6,
+#in-4:checked ~ .sv-1,
+#in-5:checked ~ .sv-2,
+#in-6:checked ~ .sv-3 {
+	animation: 1.5s back;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+	z-index: 1;
+}
+
+/* Справа (правый слайд) */
+#in-1:checked ~ .sv-3,
+#in-2:checked ~ .sv-4,
+#in-3:checked ~ .sv-5,
+#in-4:checked ~ .sv-6,
+#in-5:checked ~ .sv-1,
+#in-6:checked ~ .sv-2 {
+	animation: 1.5s left-dch;
+	animation-fill-mode: forwards;
+	transform-origin: center right;
+	z-index: 2;
+}
+
+/* Слева (Левый слайд) */
+#in-1:checked ~ .sv-2,
+#in-2:checked ~ .sv-3,
+#in-3:checked ~ .sv-4,
+#in-4:checked ~ .sv-5,
+#in-5:checked ~ .sv-6,
+#in-6:checked ~ .sv-1 {
+	animation: 1s right-izq;
+	animation-fill-mode: forwards;
+	transform-origin: center left;
+	z-index: 2;
+}
+
+/* Центральный (передний план) */
+#in-1:checked ~ .sv-1,
+#in-2:checked ~ .sv-2,
+#in-3:checked ~ .sv-3,
+#in-4:checked ~ .sv-4,
+#in-5:checked ~ .sv-5,
+#in-6:checked ~ .sv-6 {
+	animation: 2s central;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+	z-index: 3;
+}
+
+//* ----------------------------------------------------------------------------
+@keyframes right-izq {
+	0% {
+		transform: scale(1) translateX(0%);
+	}
+
+	50% {
+		transform: scale(0.9) translateX(-100%);
+	}
+
+	100% {
+		transform: scale(0.9) translateX(-7%);
+	}
+}
+
+@keyframes left-dch {
+	0% {
+		transform: scale(1) translateX(0%);
+	}
+
+	50% {
+		transform: scale(0.9) translateX(50%);
+	}
+
+	100% {
+		transform: scale(0.9) translateX(7%);
+	}
+}
+
+@keyframes central {
+	0% {
+		transform: scale(0.8);
+		z-index: 1;
+	}
+
+	80% {
+		transform: scale(0.5);
+		z-index: 3;
+	}
+
+	100% {
+		transform: scale(1);
+		z-index: 3;
+	}
+}
+
+@keyframes backTop {
+	0% {
+		transform: scale(0.8) translate(0, 0);
+		z-index: 0;
+	}
+
+	50% {
+		transform: scale(0.5) translate(0, -10%);
+		z-index: 0;
+	}
+
+	100% {
+		transform: scale(0.8) translate(0, -5%);
+		z-index: 0;
+	}
+}
+
+@keyframes backBottom {
+	0% {
+		transform: scale(0.8) translate(0, 0);
+		z-index: 0;
+	}
+
+	50% {
+		transform: scale(0.5) translate(0, 10%);
+		z-index: 0;
+	}
+
+	100% {
+		transform: scale(0.8) translate(0, 5%);
+		z-index: 0;
+	}
+}
+
+@keyframes pulso {
+	50% {
+		opacity: 0.1;
+	}
+}

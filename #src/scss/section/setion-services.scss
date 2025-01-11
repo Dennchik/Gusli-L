@@ -1,0 +1,275 @@
+@use '../core/all' as *;
+
+.services {
+	height: 100%;
+	overflow: hidden;
+
+	// .services__body
+	&__body {
+		height: 100%;
+		position: relative;
+		z-index: 9;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		padding: 6rem 0;
+
+		@include min-1140 {
+			padding: 10rem 0;
+		}
+	}
+
+	// .services__title
+	&__title {
+		margin-bottom: 6rem;
+		font: {
+			family: 'AA Neon', Helvetica, sans-serif;
+			size: 60px;
+			weight: normal;
+		}
+
+		line-height: 100%;
+		position: relative;
+		z-index: 9;
+		text-align: center;
+		letter-spacing: 0;
+		color: $neon-blue;
+		filter: $filter;
+
+		@include min-1140 {
+			margin-bottom: 10rem;
+		}
+		@include minmax-320-1920 {
+			font-size: calc(24px + (60 - 24) * ((100vw - 320px) / (1920 - 320)));
+		}
+
+		@include screen-320 {
+			font-size: 24px;
+		}
+	}
+
+	// .services__content
+	&__content {
+		width: 100%;
+	}
+
+	&__dash {
+		font-family: $font-default;
+	}
+}
+
+.services-slide {
+	// .services-slide__body
+	&__body {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	// .services-slide__column
+	&__column {
+		min-width: 130px;
+		&:not(:last-child) {
+			margin-right: 30px;
+		}
+	}
+
+	// .services-slide__content
+	&__content {
+		position: relative;
+		border-radius: 4px;
+		height: 100%;
+		display: block;
+		box-shadow: 0 0 20px #000;
+
+		&::before {
+			position: absolute;
+			z-index: -1;
+			top: -10px;
+			right: 30px;
+			bottom: -10px;
+			left: 30px;
+			display: block;
+			content: '';
+			transition: all 0.3s ease-in-out;
+			opacity: 0.3;
+			border-radius: 4px;
+			box-shadow: $boxShadow;
+
+			@include screen-1024 {
+				top: 1px;
+				right: 1px;
+				bottom: 1px;
+				left: 1px;
+			}
+		}
+
+		@include min-1024 {
+			&:hover {
+				&::before {
+					top: -3px;
+					right: -3px;
+					bottom: -3px;
+					left: -3px;
+					opacity: 0.8;
+				}
+
+				.services-slide__img {
+					position: relative;
+					scale: 1.1;
+				}
+
+				.services-slide__bg-img {
+					transform: translateY(0);
+					opacity: 1;
+				}
+
+				.services-slide__text {
+					transform: translateY(-50px);
+				}
+			}
+		}
+	}
+
+	// .services-slide__img
+	&__img {
+		position: relative;
+		z-index: -1;
+	}
+
+	// .services-slide__image
+	&__image {
+		overflow: hidden;
+		height: 100%;
+		cursor: pointer;
+		transition: all 0.5s ease-in-out;
+		border-radius: 5px;
+		filter: $filter;
+
+		img {
+			width: 100%;
+			height: 100%;
+			transition: scale 0.4s ease-in-out;
+			object-fit: cover;
+			object-position: center;
+		}
+
+		svg {
+			pointer-events: none;
+		}
+	}
+
+	// .services-slide__bg-img
+	&__bg-img {
+		position: absolute;
+		pointer-events: none;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		transition:
+			opacity 1.5s,
+			box-shadow 0.3s ease-in-out 0.2s;
+		opacity: 0;
+	}
+
+	// .services-slide__svg
+	&__svg {
+		width: 100%;
+		object-fit: cover;
+
+		img {
+			max-width: 100%;
+		}
+
+		svg {
+			position: absolute;
+			right: 0;
+			max-width: 195px;
+
+			path {
+				opacity: 0;
+				stroke: $electric-lime;
+			}
+		}
+	}
+
+	// .services-slide__text
+	&__text {
+		position: absolute;
+		pointer-events: none;
+		height: 52px;
+		width: 100%;
+		left: 0;
+		right: 0;
+		bottom: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.4s ease-in-out;
+		text-align: center;
+		color: $neon-blue;
+		background-color: rgba(11, 8, 19, 0.733);
+
+		p {
+			font-size: 12px;
+			font-weight: normal;
+
+			span {
+				display: block;
+			}
+
+			&:nth-child(1) {
+				color: $neon-blue;
+				text-transform: uppercase;
+			}
+
+			&:nth-child(2) {
+				color: $electric-lime;
+			}
+		}
+
+		@include minmax-320-1920 {
+			font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+		}
+
+		@include screen-320 {
+			font-size: 14px;
+		}
+
+		svg {
+			height: 32px;
+
+			path {
+				fill: url(#grad);
+				stroke: currentColor;
+				stroke-width: 1px;
+			}
+		}
+	}
+
+	// .services-slide__button
+	&__button {
+		width: 100%;
+
+		.button-buy {
+			width: 100%;
+		}
+	}
+}
+
+.categories-service {
+	.services-slide {
+		// .services-slide__text
+		&__text {
+			flex-direction: column;
+		}
+
+		// .services-slide__column
+		&__column {
+			display: flex;
+			flex-direction: column;
+			gap: 5rem;
+		}
+	}
+}

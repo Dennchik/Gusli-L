@@ -1,0 +1,22 @@
+extends ../layouts/app_layout
+append link
+	link(rel="stylesheet" type="text/css" href="@@webRoot/css/index.min.css")
+prepend script
+	script(defer="defer" src="@@webRoot/js/vendors/runtime.min.js")
+	script(defer="defer" src="@@webRoot/js/vendors/anime-vendors.min.js")
+	script(defer="defer" src="@@webRoot/js/vendors/swiper-bundle.min.js")
+	script(defer="defer" src="@@webRoot/js/index.min.js")
+block title
+	- var text='Студия звукозаписи "Gusli" Media-Group'
+
+
+block header 
+	header.page__header
+		include ../layouts/header 
+block main-content
+	section.main-content__video
+		include ../section/showreel
+	section.main-content__categories
+		include ../section/services
+	section.main-content__footer
+		include ../layouts/footer
