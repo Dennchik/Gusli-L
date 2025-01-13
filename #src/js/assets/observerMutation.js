@@ -1,7 +1,6 @@
 export function observerMutation() {
 	const observerCallback = (mutationlist) => {
 		for (const mutation of mutationlist) {
-
 			if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
 				updateStyles(mutation.target);
 			}
@@ -9,8 +8,13 @@ export function observerMutation() {
 	};
 
 	const updateStyles = (pagination) => {
-		const swiperWrapper = document.querySelector('.swiper-wrapper'); if (pagination && swiperWrapper) {
-			if (pagination?.classList.contains('swiper-pagination-lock')) {
+		const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+		if (pagination && swiperWrapper) {
+			const serviceColumns = swiperWrapper.querySelectorAll('.services-slide__column');
+			const hasFewColumns = serviceColumns.length < 5; // Проверка: меньше либо равно 5
+
+			if (pagination.classList.contains('swiper-pagination-lock') && hasFewColumns) {
 				swiperWrapper.style.justifyContent = 'center';
 			} else {
 				swiperWrapper.style.justifyContent = 'space-between';
@@ -19,7 +23,7 @@ export function observerMutation() {
 	};
 
 	const observePagination = () => {
-		const pagination = document.querySelector('.pagination ');
+		const pagination = document.querySelector('.pagination');
 		if (pagination) {
 			// Инициализируем стили при первом обнаружении элемента
 			updateStyles(pagination);
@@ -44,6 +48,7 @@ export function observerMutation() {
 			observerForDOM.disconnect();
 		}
 	});
+
 	const pagination = document.querySelector('.pagination');
 	if (pagination) {
 		// Если .pagination уже существует

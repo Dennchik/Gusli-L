@@ -1,30 +1,36 @@
 // import { AnimationLogo } from './assets/logoAnimation.js';
 // AnimationLogo();
 import returnToSavedPosition from './modules/return-position.js';
-returnToSavedPosition();
 import { anchorsSmoothScrolling } from './modules/anchors-smooth-scrolling.js';
-anchorsSmoothScrolling();
-import { timeLineHeaderItem } from './animations/anime-js.jsx';
 import { buttonShow } from './animations/anime-js.jsx';
 import modalOpen from './modules/modalOpen.js';
-import { applyParallax } from './animations/animations.jsx';
+import { timeLineHeaderItem } from './animations/anime-js.jsx';
+import { observerMutation } from './assets/observerMutation.js';
+import { videoPlayer } from './assets/video-player.js';
+videoPlayer();
+//* --------------------------- Animation Foter --------------------------------
+import {
+	tlFooterHorizontal,
+	tlFooterParallel,
+	refreshScrollTrigger,
+} from './animations/animations.jsx';
 
 document.addEventListener('DOMContentLoaded', () => {
-	timeLineHeaderItem();
+	returnToSavedPosition();
+	anchorsSmoothScrolling();
 	buttonShow();
 	modalOpen();
 
-	const parallax = document.querySelector('.parallax');
-	if (parallax) {
-		applyParallax('.material-parallax');
-	};
-});
+	const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+	const slideServices = document.querySelector('.slide-services');
 
-//* --------------------------- Animation Header -------------------------------
-document.addEventListener('DOMContentLoaded', () => {
+	if (slideServices) {
+		observerMutation();
+	}
+
+	//* --------------------------- Animation Header -----------------------------
 	const header = document.querySelector('.header');
 	const mainContent = document.querySelector('.page__main-content');
-
 	if (header && mainContent) {
 		// Именованная функция для обработки скроллинга
 		const handleScroll = () => {
@@ -56,20 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			window.removeEventListener('scroll', handleScroll);
 		});
 	}
+	if (!isMobile || innerWidth > 1024) {
+		tlFooterParallel();
+		tlFooterHorizontal();
+		refreshScrollTrigger();
+	}
 });
-//* --------------------------- Animation Foter --------------------------------
-import {
-	tlFooterHorizontal,
-	tlFooterParallel,
-	refreshScrollTrigger,
-} from './animations/animations.jsx';
-
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-if (!isMobile || innerWidth > 1024) {
-	tlFooterParallel();
-	tlFooterHorizontal();
-	refreshScrollTrigger();
-}
 //* ----------------------------------------------------------------------------
 document.querySelector('.burger-button').addEventListener(
 	'click', function () {
@@ -77,22 +75,7 @@ document.querySelector('.burger-button').addEventListener(
 		const menuFloatTop = document.querySelector('.menu-float__top');
 		menuFloatTop.classList.toggle('_is-open');
 	});
-//* ----------------------------------------------------------------------------
-// import Waves from './animations/waves.jsx';
-// const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-// //* Ищем элемент с атрибутом data-page
-// const pageElement = document.body.querySelector('[data-page]');
-//
-// //* Получаем значение data-page, если элемент найден
-// const currentPage = pageElement ? pageElement.getAttribute(
-// 	'data-page') : null;
-// if (currentPage !== 'index' && !isMobile) {
-// 	document.addEventListener('DOMContentLoaded', () => {
-// 		const waves = new
-// 		Waves('#holder', {waves: 3, width: 300,});
-// 		waves.animate();
-// 	});
-// }
+
 
 //* ----------------------------------------------------------------------------
 console.log('%c РОССИЯ ',

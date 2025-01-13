@@ -15,7 +15,7 @@ export function Slide(
 		new Swiper(Slide, {
 			speed: 800,
 			grabCursor: true,
-			spaceBetween: 30,
+			// spaceBetween: 30,
 			slidesPerView: 5,
 			// autoHeight: true,
 			// loop: true,

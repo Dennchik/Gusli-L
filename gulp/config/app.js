@@ -30,21 +30,24 @@ export const app = {
 		},
 
 		entry: {
-			main: { import: ['./#src/js/main.js'] },
-			index: {
-				import: ['./#src/js/pages/index.jsx'],
-				// dependOn: ['react-vendors', 'anime-vendors', 'swiper-bundle'],
+			main: {
+				import: ['./#src/js/main.js']
+			},
+			app: {
+				import: ['./#src/js/app.js'],
 				dependOn: ['anime-vendors', 'swiper-bundle'],
-				filename: '[name].min.js'
 			},
-			about: {
-				import: ['./#src/js/pages/about.jsx'],
-				dependOn: ['swiper-bundle'],
-				filename: '[name].min.js'
-			},
+			// index: {
+			// 	import: ['./#src/js/pages/index.jsx'],
+			// 	filename: '[name].min.js'
+			// },
+			// about: {
+			// 	import: ['./#src/js/pages/about.jsx'], 
+			// 	filename: '[name].min.js'
+			// },
 			// services: {
 			// 	import: ['./#src/js/pages/services.jsx'],
-			// 	dependOn: ['react-vendors', 'anime-vendors'],
+			// 	dependOn: ['anime-vendors', 'swiper-bundle'],
 			// 	filename: '[name].min.js'
 			// },
 			// sound: {
@@ -54,12 +57,12 @@ export const app = {
 			// },
 			// video: {
 			// 	import: ['./#src/js/pages/video.jsx'],
-			// 	dependOn: ['react-vendors', 'anime-vendors', 'swiper-bundle'],
+			// 	dependOn: ['anime-vendors', 'swiper-bundle'],
 			// 	filename: '[name].min.js'
 			// },
 			// products: {
 			// 	import: ['./#src/js/pages/products.jsx'],
-			// 	dependOn: ['react-vendors', 'anime-vendors'],
+			// 	dependOn: ['anime-vendors'],
 			// 	filename: '[name].min.js'
 			// },
 			// text: {

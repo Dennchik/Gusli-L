@@ -1,68 +1,79 @@
+import returnToSavedPosition from '../modules/return-position.js';
+
+returnToSavedPosition();
 import { buildSwiper } from '../layouts/build-swiper.js';
 buildSwiper();
-import { Slide } from '../layouts/services-slide.js';
-Slide();
+import { servicesSlide } from '../layouts/services-slide.js';
+servicesSlide();
+import { applyParallax } from '../animations/animations.jsx';
 
-// import { observerMutation } from '../assets/observerMutation.js';
-// observerMutation();
 //* ----------------------------------------------------------------------------
+import { gsap } from 'gsap';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+gsap.registerPlugin(ScrollSmoother);
+
 import {
 	animateTitles,
+	refreshScrollTrigger,
 	tlServices1,
 	tlServices2,
-	// tlFooterHorizontal,
-	// tlFooterParallel,
-	// refreshScrollTrigger,
+	tlFooterHorizontal,
+	tlFooterParallel,
 } from '../animations/animations.jsx';
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-import { smoother } from '../animations/animations.jsx';
 
-// Удаление ScrollSmoother (если это нужно вручную)
-window.addEventListener('visibilitychange', () => {
-	smoother.kill();
-});
-if (smoother) {
-	if (!isMobile || innerWidth > 1024) {
-		smoother.effects('.services-slide__column', {
-			speed: (i) => {
-				return window.matchMedia('(min-width:730px)').matches
-					? i % 2 === 1
-						? 1.15
-						: 1
-					: i % 2 === 0
-						? 0.9
-						: 1.15;
-			},
-		});
+if (!isMobile) {
+	const smoother = ScrollSmoother.create({
+		wrapper: '#wrapper',
+		content: '#content',
+		smooth: 1.5,
+		effects: true,
+		smoothTouch: 0.1,
+	});
+	applyParallax('.material-parallax');
+	// Удаление ScrollSmoother (если это нужно вручную)
+	window.addEventListener('unload', () => {
+		smoother.kill();
+	});
+	if (smoother) {
+		if (!isMobile || innerWidth > 1024) {
+			smoother.effects('.services-slide__column', {
+				speed: (i) => {
+					return window.matchMedia('(min-width:730px)').matches
+						? i % 2 === 1
+							? 1.15
+							: 1
+						: i % 2 === 0
+							? 0.9
+							: 1.15;
+				},
+			});
 
-		animateTitles(
-			'.services__title',
-			'.services__title',
-			'.services__title',
-			'=150',
-			'=150',
-		);
-
-		animateTitles(
-			'.offer-container__title',
-			'.offer-container__title',
-			'.offer-container__title',
-			'=150',
-			'=150',
-		);
-
-		tlServices1();
-		tlServices2();
-		// tlFooterParallel();
-		// tlFooterHorizontal();
-		// refreshScrollTrigger();
+			animateTitles(
+				'.services__title',
+				'.services__title',
+				'.services__title',
+				'=150',
+				'=150',
+			);
+			animateTitles(
+				'.offer-container__title',
+				'.offer-container__title',
+				'.offer-container__title',
+				'=150',
+				'=150',
+			);
+			tlServices1();
+			tlServices2();
+			tlFooterParallel();
+			tlFooterHorizontal();
+			refreshScrollTrigger();
+		}
 	}
 }
-// }
-//* ------------------------------- Showreel -----------------------------------
+//* ----------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-	// Укажите id вашего видео
-	const video = document.querySelector('#player-id');
+	const video = document.querySelector('#player-id'); // Укажите id вашего видео
 
 	if (video) {
 		// Проверка видимости видео
@@ -130,3 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 });
 
+import { buttonShow } from '../animations/anime-js.jsx';
+buttonShow();
+import modalOpen from '../modules/modalOpen.js';
+modalOpen();

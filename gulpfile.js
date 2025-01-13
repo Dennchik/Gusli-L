@@ -59,7 +59,7 @@ function reload(done) {
 const watcher = () => {
 	// gulp.watch(path.react.watch, gulp.series(react, reload));
 	gulp.watch(path.js.watch, gulp.series(js, reload));
-	gulp.watch(path.pug.watch, pugJade).on('all', browserSync.reload);
+	gulp.watch(path.pug.watch, gulp.series(pugJade, reload));
 	gulp.watch(path.json.watch, changeJson).on('all', browserSync.reload);
 	gulp.watch(path.json.readFile, pugJade).on('all', browserSync.reload);
 	gulp.watch(path.scss.watch, gulp.series(scss, reload));
