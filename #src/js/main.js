@@ -1,13 +1,24 @@
 // import { AnimationLogo } from './assets/logoAnimation.js';
 // AnimationLogo();
 import returnToSavedPosition from './modules/return-position.js';
-import { anchorsSmoothScrolling } from './modules/anchors-smooth-scrolling.js';
 import { buttonShow } from './animations/anime-js.jsx';
 import modalOpen from './modules/modalOpen.js';
 import { timeLineHeaderItem } from './animations/anime-js.jsx';
 import { observerMutation } from './assets/observerMutation.js';
 import { videoPlayer } from './assets/video-player.js';
-videoPlayer();
+import { anchorsSmoothScrolling } from './modules/anchors-smooth-scrolling.js';
+anchorsSmoothScrolling();
+
+const mainVideo = document.querySelector('.main-video');
+if (mainVideo) {
+	videoPlayer();
+}
+// const slideShowreel = document.querySelector('.slide-showreel');
+// if (slideShowreel) {
+
+
+
+// }
 //* --------------------------- Animation Foter --------------------------------
 import {
 	tlFooterHorizontal,
@@ -17,7 +28,6 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
 	returnToSavedPosition();
-	anchorsSmoothScrolling();
 	buttonShow();
 	modalOpen();
 
@@ -76,7 +86,10 @@ document.querySelector('.burger-button').addEventListener(
 		menuFloatTop.classList.toggle('_is-open');
 	});
 
-
+const showreelSlide = document.querySelector('.showreel-slide');
+if (showreelSlide) {
+	//
+}
 //* ----------------------------------------------------------------------------
 console.log('%c РОССИЯ ',
 	'background: blue; color: yellow; font-size: x-large; ' +
